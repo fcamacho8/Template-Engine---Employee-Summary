@@ -7,18 +7,18 @@ class Employee {
     }
     
     getName(){
-        console.log(this.name);
+        
         return this.name;
     };
 
     getId(){
-        console.log(this.id);
+        
         return this.id;  
     
     };
 
     getEmail(){
-        console.log(this.email);
+        
         return this.email;
     }
 
@@ -26,5 +26,8 @@ class Employee {
         return "Employee";
     }
 }
+console.log(this.name);
+console.log(this.id);
+console.log(this.email);
 
 module.exports = Employee;
