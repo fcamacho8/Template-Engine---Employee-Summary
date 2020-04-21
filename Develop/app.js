@@ -26,15 +26,38 @@ function startQuestions() {
             if (ans.role === "Engineer") {
                 engineerQuestions();
             } else if (ans.role === "Manager") {
-                manager();
+                managerQuestions();
             } else {
-                intern();
+                internQuestions();
             }
         })
 }
 startQuestions();
 
+function internQuestions() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Please enter your name: "
+        },
 
+        {
+            type: "input",
+            name: "email",
+            message: "Please enter your email: "
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "Please enter your school: "
+        }
+    ]).then(ans => {
+        var createIntern = new Intern(ans.name, teamArray.length + 1, ans.email, ans.school);
+        teamArray.push(createIntern);
+        console.log(createIntern);
+    })
+}
 
 function engineerQuestions() {
     inquirer
@@ -59,6 +82,32 @@ function engineerQuestions() {
             teamArray.push(createEngineer)
             console.log(createEngineer);
         })
+
+
+}
+
+function managerQuestions() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Please enter your name: "
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Please enter your email: "
+        },
+        {
+            type: "input",
+            name: "office",
+            message: "Please enter your office number: "
+        }
+    ]).then(ans => {
+        var createManager = new Manager(ans.name, teamArray.length + 1, ans.email, ans.office);
+        teamArray.push(createManager);
+        console.log(createManager);
+    })
 }
 
 
