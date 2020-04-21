@@ -32,7 +32,7 @@ function startQuestions() {
             }
         })
 }
-startQuestions();
+
 
 function internQuestions() {
     inquirer.prompt([
@@ -56,6 +56,7 @@ function internQuestions() {
         var createIntern = new Intern(ans.name, teamArray.length + 1, ans.email, ans.school);
         teamArray.push(createIntern);
         console.log(createIntern);
+        addEmployee();
     })
 }
 
@@ -81,6 +82,7 @@ function engineerQuestions() {
             var createEngineer = new Engineer(ans.name, teamArray.length + 1, ans.email, ans.github)
             teamArray.push(createEngineer)
             console.log(createEngineer);
+            addEmployee();
         })
 
 
@@ -107,8 +109,35 @@ function managerQuestions() {
         var createManager = new Manager(ans.name, teamArray.length + 1, ans.email, ans.office);
         teamArray.push(createManager);
         console.log(createManager);
+        addEmployee();
     })
 }
+
+function addEmployee() {
+    inquirer.prompt([
+        {
+            type: "confirm",
+            name: "addEmployee",
+            message: "Would you want to add a new employee? ",
+        }
+    ]).then(ans => {
+        if (ans.addEmployee === true) {
+            startQuestions()
+        } else {
+            var profile = render(teamArray);
+            console.log(profile)
+            fs.writeFile(outputPath, profile, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("Success");
+            })
+
+        }
+    })
+
+}
+startQuestions();
 
 
 
