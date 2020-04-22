@@ -8,6 +8,8 @@
     "test": "test"
   },
   "scripts": {
+    "start": "node app.js",
+    "watch":"nodemon app.js",
     "test": "jest --verbose test/*"
   },
   "repository": {
